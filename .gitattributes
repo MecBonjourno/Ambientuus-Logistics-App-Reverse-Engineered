@@ -3,7 +3,7 @@ original-source/** linguist-vendored
 original-source/** -diff
 artifacts/strings/*.txt linguist-generated
 build/dist/*.apk binary
-*.apk binary
+*.apk filter=lfs diff=lfs merge=lfs -text
 *.jks binary
 *.dex binary
 original-source/** -text
