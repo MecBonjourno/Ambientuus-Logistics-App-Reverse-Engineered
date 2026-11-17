@@ -1,0 +1,46 @@
+.class public Lorg/chromium/net/impl/CronetEngineBuilderImpl$QuicHint;
+.super Ljava/lang/Object;
+.source "CronetEngineBuilderImpl.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/chromium/net/impl/CronetEngineBuilderImpl;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "QuicHint"
+.end annotation
+
+
+# instance fields
+.field final mAlternatePort:I
+
+.field final mHost:Ljava/lang/String;
+
+.field final mPort:I
+
+
+# direct methods
+.method constructor <init>(Ljava/lang/String;II)V
+    .locals 0
+    .param p1, "host"    # Ljava/lang/String;
+    .param p2, "port"    # I
+    .param p3, "alternatePort"    # I
+
+    .line 44
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 45
+    iput-object p1, p0, Lorg/chromium/net/impl/CronetEngineBuilderImpl$QuicHint;->mHost:Ljava/lang/String;
+
+    .line 46
+    iput p2, p0, Lorg/chromium/net/impl/CronetEngineBuilderImpl$QuicHint;->mPort:I
+
+    .line 47
+    iput p3, p0, Lorg/chromium/net/impl/CronetEngineBuilderImpl$QuicHint;->mAlternatePort:I
+
+    .line 48
+    return-void
+.end method

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@id/rootLayout" android:background="@color/verde_ambietuus_dark" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <ScrollView android:background="@color/material_dynamic_neutral95" android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="true">
+            <com.google.android.flexbox.FlexboxLayout android:id="@id/flexLayout" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" app:alignContent="flex_start" app:alignItems="flex_start" app:flexDirection="row" app:flexWrap="wrap" app:justifyContent="space_between">
+                <Button android:id="@id/btnConsultaRotas" android:text="Consultar Rotas" app:icon="@drawable/ic_consulta_rota" style="@style/FullWidthOutlinedButton" />
+                <Button android:id="@id/btnCarregaBombona" android:text="CARREGAR\nVEÍCULO" app:icon="@drawable/ic_carregar_veiculo" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnLerCodBarrasBomb" android:text="ALOCAR\nBOMBONA" app:icon="@drawable/ic_alocar_bombona" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnSyncBalancasID" android:text="COLETAR\nBLUETOOTH" app:icon="@drawable/ic_coletar_bluetooth" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnIniciarColetaID" android:text="COLETAR\nMANUAL" app:icon="@drawable/ic_coletar_manual" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnTerceiros" android:text="DESCARREGAR\nVEÍCULO" app:icon="@drawable/ic_descarregar_veiculo" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnBaixaBombona" android:text="LIBERAR\nBOMBONA" app:icon="@drawable/ic_liberar_bombona" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnConsultarBombona" android:text="CONSULTAR\nBOMBONAS" app:icon="@drawable/ic_consultar_bombonas" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnConsultarBancoID" android:text="CONSULTAR\nCOLETAS" app:icon="@drawable/ic_consultar_coletas" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnConsultarManifesto" android:text="CONSULTAR\nMANIFESTOS" app:icon="@drawable/ic_consultar_coletas" style="@style/HalfWidthOutlinedButton" />
+                <Button android:id="@id/btnAtualizarBancoID" android:text="ATUALIZAR BASE" app:icon="@drawable/ic_atualizar_base" style="@style/botaoFlexBig" />
+            </com.google.android.flexbox.FlexboxLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

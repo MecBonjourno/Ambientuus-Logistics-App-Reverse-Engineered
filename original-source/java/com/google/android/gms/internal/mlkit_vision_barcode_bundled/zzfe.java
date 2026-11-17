@@ -1,0 +1,43 @@
+package com.google.android.gms.internal.mlkit_vision_barcode_bundled;
+
+/* compiled from: com.google.mlkit:barcode-scanning@@17.3.0 */
+/* loaded from: classes16.dex */
+final class zzfe implements zzgf {
+    private static final zzfk zza = new zzfc();
+    private final zzfk zzb;
+
+    public zzfe() {
+        zzfk zzfkVar = zza;
+        int i = zzfu.zza;
+        zzfd zzfdVar = new zzfd(zzea.zza(), zzfkVar);
+        byte[] bArr = zzep.zzb;
+        this.zzb = zzfdVar;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_vision_barcode_bundled.zzgf
+    public final zzge zza(Class cls) {
+        zzdt zzdtVar;
+        int i = zzgg.zza;
+        if (!zzeh.class.isAssignableFrom(cls)) {
+            int i2 = zzfu.zza;
+        }
+        zzfj zzb = this.zzb.zzb(cls);
+        if (zzb.zzb()) {
+            int i3 = zzfu.zza;
+            return zzfq.zzc(zzgg.zzm(), zzdv.zza(), zzb.zza());
+        }
+        int i4 = zzfu.zza;
+        zzfs zza2 = zzft.zza();
+        zzez zza3 = zzfa.zza();
+        zzgs zzm = zzgg.zzm();
+        switch (zzb.zzc() - 1) {
+            case 1:
+                zzdtVar = null;
+                break;
+            default:
+                zzdtVar = zzdv.zza();
+                break;
+        }
+        return zzfp.zzl(cls, zzb, zza2, zza3, zzm, zzdtVar, zzfi.zza());
+    }
+}

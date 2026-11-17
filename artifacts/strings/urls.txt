@@ -1,0 +1,10 @@
+HTTP://WEBADDRESS.ELIDED
+http://
+http://169.254.169.254
+http://google.com/
+http://localhost/
+http://ns.adobe.com/xap/1.0/
+https://
+https://accounts.google.com
+https://www.google.com
+https://www.googleapis.com/

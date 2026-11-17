@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/verde_ambietuus_dark" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:background="@color/material_dynamic_neutral90" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <TextView android:textSize="25.0sp" android:id="@id/txtConsultasStaticoID" android:paddingTop="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="CONSULTAS" android:textAlignment="center" />
+            <LinearLayout android:orientation="horizontal" android:id="@id/linearLayout5" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="20.0sp" android:id="@id/txtConsultasNroMtrStaticoID" android:paddingLeft="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NRO MTR" android:layout_weight="1.0" />
+                <TextView android:textSize="20.0sp" android:id="@id/txtConsultasDataHoraStaticoID" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PESO" android:layout_weight="1.0" android:textAlignment="textEnd" />
+            </LinearLayout>
+            <ListView android:id="@id/listView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:drawSelectorOnTop="true" android:dividerHeight="1.0dip" />
+            <LinearLayout android:orientation="horizontal" android:id="@id/linearLayout6" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="20.0sp" android:id="@id/txtConsultasNroDCStaticoID" android:paddingLeft="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NRO DC" android:layout_weight="1.0" />
+                <TextView android:textSize="20.0sp" android:id="@id/txtConsultasDCDataHoraStaticoID" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PESO" android:layout_weight="1.0" android:textAlignment="textEnd" />
+            </LinearLayout>
+            <ListView android:id="@id/listViewDC" android:layout_width="fill_parent" android:layout_height="wrap_content" android:drawSelectorOnTop="true" android:dividerHeight="1.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

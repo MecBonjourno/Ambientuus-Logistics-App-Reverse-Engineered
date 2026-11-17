@@ -1,0 +1,9 @@
+# Frozen extraction: keep it out of language statistics and discourage diff noise.
+original-source/** linguist-vendored
+original-source/** -diff
+artifacts/strings/*.txt linguist-generated
+build/dist/*.apk binary
+*.apk binary
+*.jks binary
+*.dex binary
+original-source/** -text

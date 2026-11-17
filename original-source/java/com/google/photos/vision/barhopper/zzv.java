@@ -1,0 +1,68 @@
+package com.google.photos.vision.barhopper;
+
+import com.google.android.gms.internal.mlkit_vision_barcode_bundled.zzeh;
+import com.google.android.gms.internal.mlkit_vision_barcode_bundled.zzfn;
+
+/* compiled from: com.google.mlkit:barcode-scanning@@17.3.0 */
+/* loaded from: classes16.dex */
+public final class zzv extends zzeh implements zzfn {
+    private static final zzv zzb;
+    private int zzd;
+    private int zze;
+    private String zzf = "";
+    private String zzg = "";
+    private String zzh = "";
+
+    static {
+        zzv zzvVar = new zzv();
+        zzb = zzvVar;
+        zzeh.zzV(zzv.class, zzvVar);
+    }
+
+    private zzv() {
+    }
+
+    public static zzv zzb() {
+        return zzb;
+    }
+
+    public final String zzc() {
+        return this.zzf;
+    }
+
+    public final String zzd() {
+        return this.zzh;
+    }
+
+    public final String zze() {
+        return this.zzg;
+    }
+
+    public final int zzf() {
+        int zza = zzu.zza(this.zze);
+        if (zza == 0) {
+            return 1;
+        }
+        return zza;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_vision_barcode_bundled.zzeh
+    protected final Object zzg(int i, Object obj, Object obj2) {
+        zza zzaVar = null;
+        switch (i - 1) {
+            case 0:
+                return (byte) 1;
+            case 1:
+            default:
+                return null;
+            case 2:
+                return zzS(zzb, "\u0004\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001᠌\u0000\u0002ဈ\u0001\u0003ဈ\u0002\u0004ဈ\u0003", new Object[]{"zzd", "zze", zzt.zza, "zzf", "zzg", "zzh"});
+            case 3:
+                return new zzv();
+            case 4:
+                return new zzs(zzaVar);
+            case 5:
+                return zzb;
+        }
+    }
+}

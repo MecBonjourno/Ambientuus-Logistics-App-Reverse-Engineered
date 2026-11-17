@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:padding="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" android:paddingEnd="8.0dip">
+            <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="@android:color/black" android:id="@id/textNrMTR" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="MTR Nº 12345" />
+            <TextView android:textSize="16.0sp" android:textColor="@android:color/black" android:id="@id/textCliente" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Cliente XYZ" />
+            <TextView android:textSize="14.0sp" android:textColor="@android:color/black" android:id="@id/textDataHora" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="01/01/2025 08:00" />
+        </LinearLayout>
+        <LinearLayout android:gravity="end" android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" android:paddingStart="8.0dip">
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:textColor="@android:color/black" android:id="@id/textPeso" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Peso: 100kg" />
+            <TextView android:textSize="14.0sp" android:textColor="@android:color/black" android:id="@id/textPesoLiquido" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Líquido: 90kg" />
+            <TextView android:textSize="14.0sp" android:textColor="@android:color/black" android:id="@id/textBombona" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bombona: 10L" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView android:textSize="16.0sp" android:textColor="@android:color/black" android:id="@id/textRecebeDadosExtra" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="Observações adicionais" android:textAlignment="center" />
+    <TextView android:textSize="14.0sp" android:textColor="@android:color/black" android:id="@id/textEtiqueta" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:text="Etiqueta XYZ" android:textAlignment="textStart" />
+    <TextView android:textSize="14.0sp" android:textColor="#00000000" android:id="@id/tvHdIdCliente" android:layout_width="0.0dip" android:layout_height="0.0dip" android:text="ID" />
+</LinearLayout>

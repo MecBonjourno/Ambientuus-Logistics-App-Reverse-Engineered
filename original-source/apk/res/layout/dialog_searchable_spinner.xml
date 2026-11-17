@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/white" android:padding="16.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/tvTituloSpinner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Selecione" />
+    <EditText android:id="@id/etPesquisarDialog" android:background="@android:drawable/editbox_background" android:padding="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" android:hint="Pesquisar..." android:singleLine="true" />
+    <ListView android:id="@id/listViewDialog" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</LinearLayout>

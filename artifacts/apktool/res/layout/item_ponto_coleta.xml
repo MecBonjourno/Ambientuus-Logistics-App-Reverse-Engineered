@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:id="@id/cardPonto" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dip" android:foreground="?selectableItemBackground" app:cardCornerRadius="@dimen/borderRadiusDefault" app:cardElevation="4.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:background="@drawable/bg_card_selector" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/marginDefault">
+            <TextView android:id="@id/tvNomeCliente" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="2.0dip" android:text="Cliente" android:fontFamily="@font/inter" />
+            <TextView android:id="@id/tvEndereco" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="2.0dip" android:text="Endereço" android:fontFamily="@font/inter" />
+            <TextView android:id="@id/tvMtr" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="2.0dip" android:text="MTR" android:fontFamily="@font/inter" />
+            <TextView android:id="@id/tvDestinador" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Destinador" android:fontFamily="@font/inter" />
+            <TextView android:id="@id/tvPeriodicidade" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Periodicidade" android:fontFamily="@font/inter" />
+            <TextView android:id="@id/tvResiduo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Resíduo" android:fontFamily="@font/inter" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textStyle="bold" android:id="@id/tvVolumesLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Volumes: " android:fontFamily="@font/inter" />
+                <TextView android:id="@id/tvVolumes" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Volume" android:fontFamily="@font/inter" android:textAlignment="viewStart" />
+            </LinearLayout>
+        </LinearLayout>
+        <View android:layout_gravity="end|bottom|center" android:id="@id/fundoColetaExtra" android:background="#ffffc107" android:visibility="gone" android:layout_width="100.0dip" android:layout_height="150.0dip" android:translationX="50.0dip" android:translationY="60.0dip" android:rotation="45.0" />
+        <ImageView android:layout_gravity="end|bottom|center" android:id="@id/iconeColetaExtra" android:visibility="gone" android:layout_width="24.0dip" android:layout_height="24.0dip" android:src="@drawable/ic_ponto_coleta_extra" android:contentDescription="Coleta Entra" android:layout_marginEnd="2.0dip" app:tint="#ffffffff" />
+        <TextView android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="end|bottom|center" android:id="@id/tvExtra" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="27.0dip" android:text="Extra" android:rotation="315.0" android:fontFamily="@font/inter" android:layout_marginEnd="12.0dip" />
+        <View android:layout_gravity="end|bottom|center" android:id="@id/fundoColetaNova" android:background="#ffe81f1f" android:visibility="gone" android:layout_width="100.0dip" android:layout_height="150.0dip" android:translationX="50.0dip" android:translationY="60.0dip" android:rotation="45.0" />
+        <ImageView android:layout_gravity="end|bottom|center" android:id="@id/iconeColetaNova" android:visibility="gone" android:layout_width="24.0dip" android:layout_height="24.0dip" android:src="@drawable/ic_ponto_coleta_novo" android:contentDescription="Coleta Nova" app:tint="#ffffffff" />
+        <TextView android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="end|bottom|center" android:id="@id/tvNovo" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="27.0dip" android:text="Novo!" android:rotation="315.0" android:fontFamily="@font/inter" android:layout_marginEnd="12.0dip" />
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

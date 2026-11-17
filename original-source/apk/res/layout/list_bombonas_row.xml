@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="horizontal" android:id="@id/rl_Processos" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="15.0sp" android:id="@id/tv_CodBarrasBombona_LR" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="TextView" android:layout_weight="4.0" />
+            <TextView android:textSize="13.0sp" android:id="@id/tv_Capacidade_LR" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="TextView" android:layout_weight="5.0" android:textAlignment="center" />
+            <TextView android:textSize="15.0sp" android:id="@id/tv_StatusBombona" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="TextView" android:layout_weight="4.0" android:textAlignment="textEnd" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

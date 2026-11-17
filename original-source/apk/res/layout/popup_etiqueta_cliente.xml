@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:padding="16.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" android:minWidth="300.0dip" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:cardCornerRadius="8.0dip" app:cardElevation="4.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout android:orientation="vertical" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:minWidth="300.0dip">
+            <TextView android:textSize="20.0dip" android:textStyle="bold" android:id="@id/tvPopupEtiquetaTitulo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="24.0dip" android:text="Informações Etiqueta" android:textAlignment="center" />
+            <TextView android:textSize="16.0dip" android:id="@id/tvPopupEtiquetaCliente" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Cliente" android:textAlignment="center" />
+            <TextView android:textSize="16.0dip" android:id="@id/tvPopupEtiquetaData" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Data" android:textAlignment="center" />
+            <TextView android:textSize="16.0dip" android:id="@id/tvPopupEtiquetaQuantidade" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Quantidade" android:textAlignment="center" />
+            <TextView android:textSize="16.0dip" android:id="@id/tvPopupEtiquetaPeso" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Peso" android:textAlignment="center" />
+            <TextView android:textSize="16.0dip" android:id="@id/tvPopupEtiquetaManifesto" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="MTR" android:textAlignment="center" />
+            <TextView android:textSize="16.0dip" android:id="@id/tvPopupEtiquetaEtiquetas" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Etiquetas" android:textAlignment="center" />
+            <Button android:id="@id/fecharPopUpEtiquetaCliente" android:layout_marginTop="24.0dip" android:text="Voltar" style="@style/FullWidthColoredButton" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="32.0">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="33.0">
+                <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textNrMTR" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="33.0" android:textAlignment="textStart" />
+                <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textDataHora" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="33.0" android:textAlignment="textStart" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="33.0">
+                <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textPeso" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="33.0" android:textAlignment="textEnd" />
+                <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textBombona" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="33.0" android:textAlignment="textEnd" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="47.0">
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textIdRota" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="33.0" android:textAlignment="textStart" />
+                <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textEnviado" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="33.0" android:textAlignment="textEnd" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView android:textSize="20.0sp" android:textStyle="bold" android:id="@id/textRecebeDadosExtra" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textAlignment="center" />
+    </LinearLayout>
+</LinearLayout>

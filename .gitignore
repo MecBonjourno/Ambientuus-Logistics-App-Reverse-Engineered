@@ -1,0 +1,12 @@
+# Heavy intermediates produced by the rebuild pipeline
+build/work/
+build/verify/
+build/dist/rebuilt-unsigned.apk
+build/dist/rebuilt-aligned.apk
+build/reports/verification-run.txt
+
+# Scratch
+*.tmp
+*.log
+
+build/verify2/

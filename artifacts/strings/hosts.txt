@@ -1,0 +1,8 @@
+169.254.169.254
+accounts.google.com
+google.com
+localhost
+ns.adobe.com
+webaddress.elided
+www.google.com
+www.googleapis.com

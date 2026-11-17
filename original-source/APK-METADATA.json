@@ -1,0 +1,109 @@
+{
+  "artifact": {
+    "file": "APKFiles/OriginalApp/app_coleta_ambientuus_hom_1.59 2.apk",
+    "bytes": 54720633,
+    "sha256": "94e4d8a5ce2b9c79fb44846e6237b632eb6546734cca5c74314c6d44faf1c1f5",
+    "package": "com.coleta.ambientuus.debug",
+    "versionName": "1.59-DEBUG",
+    "versionCode": 59,
+    "minSdk": 23,
+    "targetSdk": 35,
+    "compileSdk": 35,
+    "label": "Coletas Ambientuus - Homologação",
+    "dexFiles": 17,
+    "entries": 1167
+  },
+  "original_build_fingerprint": {
+    "source": "D8/R8 metadata strings present in the original DEX and absent after smali reassembly",
+    "d8_version": "8.9.35",
+    "min_api": 23,
+    "compilation_mode": "debug",
+    "desugar_jdk_libs_configuration": "2.1.5",
+    "r8_full_mode_evidence": "R8 synthetic lambda classes ($$ExternalSyntheticLambda) and renamed entry points"
+  },
+  "extraction": {
+    "date": "2026-11-17",
+    "tools": {
+      "apktool": "2.11.1",
+      "jadx": "1.5.1",
+      "java": "Temurin 21.0.13+9",
+      "aapt2": "build-tools 35.0.0",
+      "apksigner": "build-tools 35.0.0"
+    },
+    "tree": {
+      "apk/": "lossless apktool tree: AndroidManifest.xml, apktool.yml, smali/, smali_classes2..17/, res/, assets/, lib/, original/, unknown/",
+      "java/": "JADX 1.5.1 Java decompilation of every class (readable reference, not compilable)",
+      "MANIFEST.sha256": "SHA-256 of every extracted file",
+      "verify-original-source.ps1": "integrity checker"
+    },
+    "counts": {
+      "smaliFiles": 21674,
+      "javaFiles": 11284,
+      "applicationClasses": 128,
+      "totalTopLevelClasses": 11250
+    }
+  },
+  "rebuild": {
+    "script": "build/build-rebuilt.ps1",
+    "pipeline": [
+      "apktool b",
+      "zipalign -P 16",
+      "apksigner v1+v2+v3"
+    ],
+    "output": "build/dist/app_coleta_ambientuus_rebuilt.apk",
+    "bytes": 53596989,
+    "sha256": "5d780397067e762b218ab025658bb8c4484b1120283066d673a22d546c05cbe2",
+    "reproducibility": "class/method/field content is deterministic; exact APK bytes may vary with signing time attributes",
+    "signing": {
+      "key": "build/keys/reference-debug.jks (reference only, NOT the client key)",
+      "certificate_sha256": "05d8a8b7bcd3bc9e10b602f55e70b918cd8faa77ee0d16d3c73556e61141b83d",
+      "schemes": {
+        "v1": true,
+        "v2": true,
+        "v3": true,
+        "v3_1": false,
+        "v4": false
+      }
+    }
+  },
+  "verification": {
+    "badging": "130/130 identical lines (package, version, SDK, permissions, label, launcher)",
+    "dex": {
+      "files": 17,
+      "classes": 21674,
+      "methods": 171219,
+      "fields": 77064,
+      "original_rebuilt_equal": true
+    },
+    "zipEntries": {
+      "original": 1167,
+      "rebuilt": 1167
+    },
+    "smaliRoundTrip": {
+      "files": 21674,
+      "byteIdentical": 21661,
+      "differing": 13,
+      "difference": "explicit '= false' static field initialisers only (semantically identical)"
+    },
+    "dexStringPool": {
+      "originalUnique": 167799,
+      "rebuiltUnique": 167780,
+      "onlyInOriginal": 19,
+      "nature": "D8/R8 build metadata blobs (~~D8, ~~L8, ~~~ checksum maps); no application code or literal lost"
+    },
+    "resources": {
+      "note": "aapt2 collapses resource version qualifiers that are redundant at minSdk 23 (e.g. color-v23 -> color); 256 entry paths normalised, resource IDs and values unchanged"
+    },
+    "runtime": {
+      "device": "Android 15 (API 35) google_apis x86_64 emulator, Pixel 6 profile",
+      "install": "Success",
+      "launch": "MainActivity resumed, process alive",
+      "screenshot_diff_below_status_bar": "0 differing pixels of 2,462,400",
+      "screenshots": [
+        "build/screens/original-main.png",
+        "build/screens/rebuilt-main.png"
+      ]
+    },
+    "conclusion": "Semantically complete rebuild: identical package metadata, identical class/method/field inventories, identical UI at runtime, signed and installable."
+  }
+}
