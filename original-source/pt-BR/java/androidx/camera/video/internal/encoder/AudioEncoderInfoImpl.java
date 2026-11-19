@@ -1,0 +1,20 @@
+package androidx.camera.video.internal.encoder;
+
+import android.media.MediaCodecInfo;
+import android.util.Range;
+import j$.util.Objects;
+
+/* carregado de: classes.dex */
+public class AudioEncoderInfoImpl extends EncoderInfoImpl implements AudioEncoderInfo {
+    private final MediaCodecInfo.AudioCapabilities mAudioCapabilities;
+
+    AudioEncoderInfoImpl(MediaCodecInfo codecInfo, String mime) throws InvalidConfigException {
+        super(codecInfo, mime);
+        this.mAudioCapabilities = (MediaCodecInfo.AudioCapabilities) Objects.requireNonNull(this.mCodecCapabilities.getAudioCapabilities());
+    }
+
+    @Override // androidx.camera.video.internal.encoder.AudioEncoderInfo
+    public Range<Integer> getBitrateRange() {
+        return this.mAudioCapabilities.getBitrateRange();
+    }
+}

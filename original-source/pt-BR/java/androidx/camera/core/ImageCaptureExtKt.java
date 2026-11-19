@@ -1,0 +1,276 @@
+package androidx.camera.core;
+
+import android.graphics.Bitmap;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.imagecapture.RequestWithCallback;
+import androidx.camera.core.imagecapture.TakePictureRequest;
+import androidx.camera.core.impl.utils.executor.CameraXExecutors;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import java.util.concurrent.Executor;
+import kotlin.Metadata;
+import kotlin.Result;
+import kotlin.ResultKt;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.ContinuationInterceptor;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.intrinsics.IntrinsicsKt;
+import kotlin.coroutines.jvm.internal.DebugProbesKt;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.Ref;
+import kotlinx.coroutines.CancellableContinuation;
+import kotlinx.coroutines.CancellableContinuationImpl;
+import kotlinx.coroutines.CoroutineDispatcher;
+import kotlinx.coroutines.ExecutorsKt;
+
+/* compiled from: ImageCaptureExt.kt */
+@Metadata(d1 = {"\u0000:\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\u001aT\u0010\u0000\u001a\u00020\u0001*\u00020\u00022\u0010\b\u0002\u0010\u0003\u001a\n\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u00042\u0016\b\u0002\u0010\u0006\u001a\u0010\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u00072\u0016\b\u0002\u0010\t\u001a\u0010\u0012\u0004\u0012\u00020\n\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u0007H\u0086@¢\u0006\u0002\u0010\u000b\u001a\\\u0010\u0000\u001a\u00020\f*\u00020\u00022\u0006\u0010\r\u001a\u00020\u000e2\u0010\b\u0002\u0010\u0003\u001a\n\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u00042\u0016\b\u0002\u0010\u0006\u001a\u0010\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u00072\u0016\b\u0002\u0010\t\u001a\u0010\u0012\u0004\u0012\u00020\n\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u0007H\u0086@¢\u0006\u0002\u0010\u000f\u001a\u000e\u0010\u0010\u001a\u0004\u0018\u00010\u0011*\u00020\u0002H\u0001¨\u0006\u0012"}, d2 = {"takePicture", "Landroidx/camera/core/ImageProxy;", "Landroidx/camera/core/ImageCapture;", "onCaptureStarted", "Lkotlin/Function0;", "", "onCaptureProcessProgressed", "Lkotlin/Function1;", "", "onPostviewBitmapAvailable", "Landroid/graphics/Bitmap;", "(Landroidx/camera/core/ImageCapture;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", "Landroidx/camera/core/ImageCapture$OutputFileResults;", "outputFileOptions", "Landroidx/camera/core/ImageCapture$OutputFileOptions;", "(Landroidx/camera/core/ImageCapture;Landroidx/camera/core/ImageCapture$OutputFileOptions;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", "getTakePictureRequest", "Landroidx/camera/core/imagecapture/TakePictureRequest;", "camera-core_release"}, k = 2, mv = {2, 0, 0}, xi = ConstraintLayout.LayoutParams.Table.LAYOUT_CONSTRAINT_VERTICAL_CHAINSTYLE)
+/* carregado de: classes.dex */
+public final class ImageCaptureExtKt {
+    public static /* sintético */ Object takePicture$default(ImageCapture imageCapture, Function0 function0, Function1 function1, Function1 function12, Continuation continuation, int i, Object obj) {
+        if ((i & 1) != 0) {
+            function0 = null;
+        }
+        if ((i & 2) != 0) {
+            function1 = null;
+        }
+        if ((i & 4) != 0) {
+            function12 = null;
+        }
+        return takePicture(imageCapture, function0, function1, function12, continuation);
+    }
+
+    /* JADX WARN: falha na inferência de tipos de múltiplas variáveis */
+    /* JADX WARN: falha na inferência de tipo para: r13v0, types: [T, androidx.camera.core.DelegatingImageCapturedCallback] */
+    public static final Object takePicture(ImageCapture $this$takePicture, final Function0<Unit> function0, final Function1<? super Integer, Unit> function1, final Function1<? super Bitmap, Unit> function12, Continuation<? super ImageProxy> continuation) {
+        Executor callbackExecutor;
+        CoroutineContext.Element element = continuation.get$context().get(ContinuationInterceptor.INSTANCE);
+        DelegatingImageCapturedCallback delegatingImageCapturedCallback = null;
+        CoroutineDispatcher coroutineDispatcher = element instanceof CoroutineDispatcher ? (CoroutineDispatcher) element : null;
+        if (coroutineDispatcher == null || (callbackExecutor = ExecutorsKt.asExecutor(coroutineDispatcher)) == null) {
+            callbackExecutor = CameraXExecutors.directExecutor();
+            Intrinsics.checkNotNullExpressionValue(callbackExecutor, "directExecutor(...)");
+        }
+        CancellableContinuationImpl cancellable$iv = new CancellableContinuationImpl(IntrinsicsKt.intercepted(continuation), 1);
+        cancellable$iv.initCancellability();
+        final CancellableContinuationImpl continuation2 = cancellable$iv;
+        final Ref.ObjectRef delegatingCallback = new Ref.ObjectRef();
+        delegatingCallback.element = new DelegatingImageCapturedCallback(new ImageCapture.OnImageCapturedCallback() { // da classe: androidx.camera.core.ImageCaptureExtKt$takePicture$2$1
+            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+            public void onCaptureStarted() {
+                Function0<Unit> function02 = function0;
+                if (function02 != null) {
+                    function02.invoke();
+                }
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+            public void onCaptureProcessProgressed(int progress) {
+                Function1<Integer, Unit> function13 = function1;
+                if (function13 != null) {
+                    function13.invoke(Integer.valueOf(progress));
+                }
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+            public void onPostviewBitmapAvailable(Bitmap bitmap) {
+                Intrinsics.checkNotNullParameter(bitmap, "bitmap");
+                Function1<Bitmap, Unit> function13 = function12;
+                if (function13 != null) {
+                    function13.invoke(bitmap);
+                }
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+            public void onCaptureSuccess(ImageProxy imageProxy) {
+                DelegatingImageCapturedCallback delegatingImageCapturedCallback2;
+                Intrinsics.checkNotNullParameter(imageProxy, "imageProxy");
+                if (delegatingCallback.element == null) {
+                    Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+                    delegatingImageCapturedCallback2 = null;
+                } else {
+                    delegatingImageCapturedCallback2 = delegatingCallback.element;
+                }
+                delegatingImageCapturedCallback2.dispose();
+                CancellableContinuation<ImageProxy> cancellableContinuation = continuation2;
+                Result.Companion companion = Result.INSTANCE;
+                cancellableContinuation.resumeWith(Result.m880constructorimpl(imageProxy));
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+            public void onError(ImageCaptureException exception) {
+                DelegatingImageCapturedCallback delegatingImageCapturedCallback2;
+                Intrinsics.checkNotNullParameter(exception, "exception");
+                if (delegatingCallback.element == null) {
+                    Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+                    delegatingImageCapturedCallback2 = null;
+                } else {
+                    delegatingImageCapturedCallback2 = delegatingCallback.element;
+                }
+                delegatingImageCapturedCallback2.dispose();
+                CancellableContinuation<ImageProxy> cancellableContinuation = continuation2;
+                Result.Companion companion = Result.INSTANCE;
+                cancellableContinuation.resumeWith(Result.m880constructorimpl(ResultKt.createFailure(exception)));
+            }
+        });
+        continuation2.invokeOnCancellation(new Function1<Throwable, Unit>() { // da classe: androidx.camera.core.ImageCaptureExtKt$takePicture$2$2
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* sintético */ Unit invoke(Throwable th) {
+                invoke2(th);
+                return Unit.INSTANCE;
+            }
+
+            /* renomeado de: invoke, motivo: evitar colisão após correção de tipos em outro método */
+            public final void invoke2(Throwable it) {
+                DelegatingImageCapturedCallback delegatingImageCapturedCallback2;
+                if (delegatingCallback.element == null) {
+                    Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+                    delegatingImageCapturedCallback2 = null;
+                } else {
+                    delegatingImageCapturedCallback2 = delegatingCallback.element;
+                }
+                delegatingImageCapturedCallback2.dispose();
+            }
+        });
+        if (delegatingCallback.element == 0) {
+            Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+        } else {
+            delegatingImageCapturedCallback = (DelegatingImageCapturedCallback) delegatingCallback.element;
+        }
+        $this$takePicture.m152lambda$takePicture$1$androidxcameracoreImageCapture(callbackExecutor, delegatingImageCapturedCallback);
+        Object result = cancellable$iv.getResult();
+        if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+            DebugProbesKt.probeCoroutineSuspended(continuation);
+        }
+        return result;
+    }
+
+    public static /* sintético */ Object takePicture$default(ImageCapture imageCapture, ImageCapture.OutputFileOptions outputFileOptions, Function0 function0, Function1 function1, Function1 function12, Continuation continuation, int i, Object obj) {
+        if ((i & 2) != 0) {
+            function0 = null;
+        }
+        if ((i & 4) != 0) {
+            function1 = null;
+        }
+        if ((i & 8) != 0) {
+            function12 = null;
+        }
+        return takePicture(imageCapture, outputFileOptions, function0, function1, function12, continuation);
+    }
+
+    /* JADX WARN: falha na inferência de tipos de múltiplas variáveis */
+    /* JADX WARN: falha na inferência de tipo para: r13v0, types: [T, androidx.camera.core.DelegatingImageSavedCallback] */
+    public static final Object takePicture(ImageCapture $this$takePicture, ImageCapture.OutputFileOptions outputFileOptions, final Function0<Unit> function0, final Function1<? super Integer, Unit> function1, final Function1<? super Bitmap, Unit> function12, Continuation<? super ImageCapture.OutputFileResults> continuation) {
+        Executor callbackExecutor;
+        CoroutineContext.Element element = continuation.get$context().get(ContinuationInterceptor.INSTANCE);
+        DelegatingImageSavedCallback delegatingImageSavedCallback = null;
+        CoroutineDispatcher coroutineDispatcher = element instanceof CoroutineDispatcher ? (CoroutineDispatcher) element : null;
+        if (coroutineDispatcher == null || (callbackExecutor = ExecutorsKt.asExecutor(coroutineDispatcher)) == null) {
+            callbackExecutor = CameraXExecutors.directExecutor();
+            Intrinsics.checkNotNullExpressionValue(callbackExecutor, "directExecutor(...)");
+        }
+        CancellableContinuationImpl cancellable$iv = new CancellableContinuationImpl(IntrinsicsKt.intercepted(continuation), 1);
+        cancellable$iv.initCancellability();
+        final CancellableContinuationImpl continuation2 = cancellable$iv;
+        final Ref.ObjectRef delegatingCallback = new Ref.ObjectRef();
+        delegatingCallback.element = new DelegatingImageSavedCallback(new ImageCapture.OnImageSavedCallback() { // da classe: androidx.camera.core.ImageCaptureExtKt$takePicture$4$1
+            @Override // androidx.camera.core.ImageCapture.OnImageSavedCallback
+            public void onCaptureStarted() {
+                Function0<Unit> function02 = function0;
+                if (function02 != null) {
+                    function02.invoke();
+                }
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageSavedCallback
+            public void onCaptureProcessProgressed(int progress) {
+                Function1<Integer, Unit> function13 = function1;
+                if (function13 != null) {
+                    function13.invoke(Integer.valueOf(progress));
+                }
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageSavedCallback
+            public void onPostviewBitmapAvailable(Bitmap bitmap) {
+                Intrinsics.checkNotNullParameter(bitmap, "bitmap");
+                Function1<Bitmap, Unit> function13 = function12;
+                if (function13 != null) {
+                    function13.invoke(bitmap);
+                }
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageSavedCallback
+            public void onImageSaved(ImageCapture.OutputFileResults outputFileResults) {
+                DelegatingImageSavedCallback delegatingImageSavedCallback2;
+                Intrinsics.checkNotNullParameter(outputFileResults, "outputFileResults");
+                if (delegatingCallback.element == null) {
+                    Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+                    delegatingImageSavedCallback2 = null;
+                } else {
+                    delegatingImageSavedCallback2 = delegatingCallback.element;
+                }
+                delegatingImageSavedCallback2.dispose();
+                CancellableContinuation<ImageCapture.OutputFileResults> cancellableContinuation = continuation2;
+                Result.Companion companion = Result.INSTANCE;
+                cancellableContinuation.resumeWith(Result.m880constructorimpl(outputFileResults));
+            }
+
+            @Override // androidx.camera.core.ImageCapture.OnImageSavedCallback
+            public void onError(ImageCaptureException exception) {
+                DelegatingImageSavedCallback delegatingImageSavedCallback2;
+                Intrinsics.checkNotNullParameter(exception, "exception");
+                if (delegatingCallback.element == null) {
+                    Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+                    delegatingImageSavedCallback2 = null;
+                } else {
+                    delegatingImageSavedCallback2 = delegatingCallback.element;
+                }
+                delegatingImageSavedCallback2.dispose();
+                CancellableContinuation<ImageCapture.OutputFileResults> cancellableContinuation = continuation2;
+                Result.Companion companion = Result.INSTANCE;
+                cancellableContinuation.resumeWith(Result.m880constructorimpl(ResultKt.createFailure(exception)));
+            }
+        });
+        continuation2.invokeOnCancellation(new Function1<Throwable, Unit>() { // da classe: androidx.camera.core.ImageCaptureExtKt$takePicture$4$2
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* sintético */ Unit invoke(Throwable th) {
+                invoke2(th);
+                return Unit.INSTANCE;
+            }
+
+            /* renomeado de: invoke, motivo: evitar colisão após correção de tipos em outro método */
+            public final void invoke2(Throwable it) {
+                DelegatingImageSavedCallback delegatingImageSavedCallback2;
+                if (delegatingCallback.element == null) {
+                    Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+                    delegatingImageSavedCallback2 = null;
+                } else {
+                    delegatingImageSavedCallback2 = delegatingCallback.element;
+                }
+                delegatingImageSavedCallback2.dispose();
+            }
+        });
+        if (delegatingCallback.element == 0) {
+            Intrinsics.throwUninitializedPropertyAccessException("delegatingCallback");
+        } else {
+            delegatingImageSavedCallback = (DelegatingImageSavedCallback) delegatingCallback.element;
+        }
+        $this$takePicture.m153lambda$takePicture$2$androidxcameracoreImageCapture(outputFileOptions, callbackExecutor, delegatingImageSavedCallback);
+        Object result = cancellable$iv.getResult();
+        if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+            DebugProbesKt.probeCoroutineSuspended(continuation);
+        }
+        return result;
+    }
+
+    public static final TakePictureRequest getTakePictureRequest(ImageCapture $this$getTakePictureRequest) {
+        Intrinsics.checkNotNullParameter($this$getTakePictureRequest, "<this>");
+        RequestWithCallback capturingRequest = $this$getTakePictureRequest.getTakePictureManager().getCapturingRequest();
+        if (capturingRequest != null) {
+            return capturingRequest.getTakePictureRequest();
+        }
+        return null;
+    }
+}

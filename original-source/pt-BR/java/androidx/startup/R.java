@@ -1,0 +1,15 @@
+package androidx.startup;
+
+/* carregado de: classes2.dex */
+public final class R {
+
+    public static final class string {
+        public static int androidx_startup = 0x7f13001d;
+
+        private string() {
+        }
+    }
+
+    private R() {
+    }
+}

@@ -1,0 +1,76 @@
+package j$.time.chrono;
+
+import j$.time.DateTimeException;
+import j$.time.chrono.Era;
+import j$.time.format.DateTimeFormatterBuilder;
+import j$.time.format.TextStyle;
+import j$.time.temporal.ChronoField;
+import j$.time.temporal.Temporal;
+import j$.time.temporal.TemporalAccessor;
+import j$.time.temporal.TemporalField;
+import j$.time.temporal.TemporalQuery;
+import j$.time.temporal.ValueRange;
+import java.util.Locale;
+
+/* carregado de: classes15.dex */
+public enum IsoEra implements Era {
+    BCE,
+    CE;
+
+    @Override // j$.time.chrono.Era, j$.time.temporal.TemporalAdjuster
+    public /* sintético */ Temporal adjustInto(Temporal temporal) {
+        Temporal with;
+        with = temporal.with(ChronoField.ERA, getValue());
+        return with;
+    }
+
+    @Override // j$.time.chrono.Era, j$.time.temporal.TemporalAccessor
+    public /* sintético */ int get(TemporalField temporalField) {
+        return Era.CC.$default$get(this, temporalField);
+    }
+
+    @Override // j$.time.chrono.Era
+    public /* sintético */ String getDisplayName(TextStyle textStyle, Locale locale) {
+        String format;
+        format = new DateTimeFormatterBuilder().appendText(ChronoField.ERA, textStyle).toFormatter(locale).format(this);
+        return format;
+    }
+
+    @Override // j$.time.chrono.Era, j$.time.temporal.TemporalAccessor
+    public /* sintético */ long getLong(TemporalField temporalField) {
+        return Era.CC.$default$getLong(this, temporalField);
+    }
+
+    @Override // j$.time.chrono.Era, j$.time.temporal.TemporalAccessor
+    public /* sintético */ boolean isSupported(TemporalField temporalField) {
+        return Era.CC.$default$isSupported(this, temporalField);
+    }
+
+    @Override // j$.time.chrono.Era, j$.time.temporal.TemporalAccessor
+    public /* sintético */ Object query(TemporalQuery temporalQuery) {
+        return Era.CC.$default$query(this, temporalQuery);
+    }
+
+    @Override // j$.time.chrono.Era, j$.time.temporal.TemporalAccessor
+    public /* sintético */ ValueRange range(TemporalField temporalField) {
+        ValueRange $default$range;
+        $default$range = TemporalAccessor.CC.$default$range(this, temporalField);
+        return $default$range;
+    }
+
+    public static IsoEra of(int isoEra) {
+        switch (isoEra) {
+            case 0:
+                return BCE;
+            case 1:
+                return CE;
+            default:
+                throw new DateTimeException("Invalid era: " + isoEra);
+        }
+    }
+
+    @Override // j$.time.chrono.Era
+    public int getValue() {
+        return ordinal();
+    }
+}

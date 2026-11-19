@@ -8,6 +8,17 @@ reverse-engineering outputs produced without access to the original source.
 **Package:** `com.coleta.ambientuus.debug` — version `1.59-DEBUG` (59)
 **Verdict:** 🔴 not production-ready — debuggable debug build, cleartext unauthenticated API, hardcoded admin password.
 
+## New multi-platform plan (2026-11-18)
+
+The Android-only replacement plan is on hold. The next phase is a platform rebuild: a **Next.js 16.4
+web platform**, an **Expo SDK 58 iOS/Android app**, and a **Rust-based Windows desktop app** (Tauri 2.12),
+on a contract-first TypeScript API and PostgreSQL, with Oracle ORDS behind an anti-corruption adapter.
+
+Start with the [platform plan index](docs/platform/README.md), then the
+[legacy functional spec](docs/platform/LEGACY-APP-SPEC.md),
+[target architecture](docs/platform/PLATFORM-ARCHITECTURE.md) and
+[delivery plan](docs/platform/DELIVERY-PLAN.md).
+
 ## Deliverables
 
 | Document | What it covers |
@@ -15,7 +26,8 @@ reverse-engineering outputs produced without access to the original source.
 | [REA setup plan](docs/setup/REA-SETUP-PLAN.md) | What was installed, why, exact commands, rollback |
 | [Installation verification](docs/setup/REA-INSTALLATION-VERIFICATION.md) | Versions, doctor result, live MCP proof |
 | [APK security assessment](docs/analysis/APK-SECURITY-ASSESSMENT.md) | 14 findings, attack scenarios, LGPD/MTR impact, remediation roadmap |
-| [Architecture & reconstruction](docs/analysis/APP-ARCHITECTURE-AND-RECONSTRUCTION.md) | What the app does, data model, API surface, rebuild plan and effort |
+| [Architecture & reconstruction](docs/analysis/APP-ARCHITECTURE-AND-RECONSTRUCTION.md) | What the app does, data model, API surface, rebuild plan and effort (Android-only; on hold) |
+| [Multi-platform rebuild plan](docs/platform/README.md) | Stack evaluation and target architecture for web + iOS/Android + Windows, with delivery plan and migration |
 | [Evidence index](artifacts/EVIDENCE-INDEX.md) | REA evidence IDs behind every claim |
 | [Original source snapshot](original-source/README.md) | Frozen, buildable extraction of the APK (smali + Java + resources) |
 | [Extraction & build-clone report](docs/rebuild/ORIGINAL-SOURCE-SNAPSHOT.md) | How the snapshot was made, its measured fidelity, runtime proof |
@@ -44,6 +56,27 @@ The rebuild is signed with a **reference key**, not the client's (which is unava
 update an installed original. Details: [original-source/README.md](original-source/README.md) and
 [ORIGINAL-SOURCE-SNAPSHOT.md](docs/rebuild/ORIGINAL-SOURCE-SNAPSHOT.md).
 
+## Tradução pt-BR
+
+A extração congelada permanece intacta e ganhou uma camada derivada em Português do Brasil:
+
+| Conteúdo | Onde |
+|---|---|
+| README traduzido | [original-source/pt-BR/README.md](original-source/pt-BR/README.md) |
+| Metadados em português | [APK-METADATA.md](original-source/pt-BR/APK-METADATA.md) |
+| Glossário técnico e marcadores JADX | [GLOSSARIO.md](original-source/pt-BR/GLOSSARIO.md) |
+| Mapa funcional do código | [MAPA-DO-CODIGO.md](original-source/pt-BR/MAPA-DO-CODIGO.md) |
+| Comentários Java traduzidos | [original-source/pt-BR/java/](original-source/pt-BR/java/) — espelho de 11.284 arquivos |
+| Como foi feito | [SOBRE-ESTA-TRADUCAO.md](original-source/pt-BR/SOBRE-ESTA-TRADUCAO.md) |
+
+A tradução toca **apenas comentários**: o código é idêntico byte a byte e a verificação é feita
+revertendo o mapa de tradução. A árvore smali não é duplicada (é a entrada de compilação, com
+diretivas estruturais, não documentação). Para regerar:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\translate-jadx-comments.ps1 -Source original-source\java -Destination original-source\pt-BR\java -Verify
+```
+
 ## Tooling
 
 - [REA](https://rea.tools) 6.9.0 (MCP server, registered with DeepSeek Harness as `rea`) + JADX 0.7.1 provider
@@ -61,6 +94,7 @@ build/                  reproducible rebuild pipeline, reference key, signed APK
 docs/setup/             REA installation plan and verification
 docs/analysis/          security assessment, architecture, reconstruction plan
 docs/rebuild/           extraction and build-clone report
+docs/platform/          multi-platform stack evaluation, architecture, legacy spec, delivery plan
 artifacts/apktool/      decoded manifest/resources (dex copies removed)
 artifacts/strings/      DEX string inventory: URLs, hosts, secret-like literals
 artifacts/tools/        scan script used to derive the string inventory
@@ -102,7 +136,8 @@ powershell -ExecutionPolicy Bypass -File original-source\verify-original-source.
 
 ## Next steps
 
-Phase 0 hotfix (release build, HTTPS in front of ORDS, API credential, rotate admin password) is
-described in the [security assessment](docs/analysis/APK-SECURITY-ASSESSMENT.md#8-remediation-roadmap);
-the replacement plan and the information still needed from the client are in the
-[reconstruction plan](docs/analysis/APP-ARCHITECTURE-AND-RECONSTRUCTION.md#9-information-we-need-from-the-client).
+The immediate security hotfix (release build, HTTPS in front of ORDS, API credential, rotate the
+admin password) is still described in the [security assessment](docs/analysis/APK-SECURITY-ASSESSMENT.md#8-remediation-roadmap).
+For the replacement, start with the [platform plan](docs/platform/README.md): approve the stack and run
+the two-week Phase 0 discovery sprint (ORDS access, hardware spike, legacy data profiling, scaffold).
+The decisions still needed from the client are listed in the [delivery plan](docs/platform/DELIVERY-PLAN.md#9-decisions-needed).

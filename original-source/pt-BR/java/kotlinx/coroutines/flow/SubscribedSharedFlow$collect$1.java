@@ -1,0 +1,31 @@
+package kotlinx.coroutines.flow;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import com.google.api.client.http.HttpStatusCodes;
+import kotlin.Metadata;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.jvm.internal.ContinuationImpl;
+import kotlin.coroutines.jvm.internal.DebugMetadata;
+
+/* compiled from: Share.kt */
+@Metadata(k = 3, mv = {1, 9, 0}, xi = ConstraintLayout.LayoutParams.Table.LAYOUT_CONSTRAINT_VERTICAL_CHAINSTYLE)
+@DebugMetadata(c = "kotlinx.coroutines.flow.SubscribedSharedFlow", f = "Share.kt", i = {}, l = {HttpStatusCodes.STATUS_CODE_METHOD_NOT_ALLOWED}, m = "collect", n = {}, s = {})
+/* carregado de: classes17.dex */
+final class SubscribedSharedFlow$collect$1 extends ContinuationImpl {
+    int label;
+    /* sintético */ Object result;
+    final /* sintético */ SubscribedSharedFlow<T> this$0;
+
+    /* JADX WARN: chamada 'super' movida para o topo do método (pode alterar a semântica do código) */
+    SubscribedSharedFlow$collect$1(SubscribedSharedFlow<T> subscribedSharedFlow, Continuation<? super SubscribedSharedFlow$collect$1> continuation) {
+        super(continuation);
+        this.this$0 = subscribedSharedFlow;
+    }
+
+    @Override // kotlin.coroutines.jvm.internal.BaseContinuationImpl
+    public final Object invokeSuspend(Object obj) {
+        this.result = obj;
+        this.label |= Integer.MIN_VALUE;
+        return this.this$0.collect(null, this);
+    }
+}

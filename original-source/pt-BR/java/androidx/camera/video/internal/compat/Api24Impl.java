@@ -1,0 +1,19 @@
+package androidx.camera.video.internal.compat;
+
+import android.media.AudioRecord;
+import android.media.AudioRecordingConfiguration;
+import android.media.AudioTimestamp;
+
+/* carregado de: classes.dex */
+public final class Api24Impl {
+    private Api24Impl() {
+    }
+
+    public static int getTimestamp(AudioRecord audioRecord, AudioTimestamp audioTimestamp, int timeBase) {
+        return audioRecord.getTimestamp(audioTimestamp, timeBase);
+    }
+
+    public static int getClientAudioSessionId(AudioRecordingConfiguration audioRecordingConfiguration) {
+        return audioRecordingConfiguration.getClientAudioSessionId();
+    }
+}

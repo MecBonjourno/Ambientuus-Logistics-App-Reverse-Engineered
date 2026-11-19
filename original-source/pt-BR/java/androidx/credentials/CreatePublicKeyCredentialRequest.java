@@ -1,0 +1,183 @@
+package androidx.credentials;
+
+import android.graphics.drawable.Icon;
+import android.os.Bundle;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.credentials.CreateCredentialRequest;
+import androidx.credentials.internal.FrameworkClassParsingException;
+import androidx.credentials.internal.RequestValidationHelper;
+import kotlin.Metadata;
+import kotlin.jvm.JvmStatic;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import org.json.JSONObject;
+
+/* compiled from: CreatePublicKeyCredentialRequest.kt */
+@Metadata(d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\u0012\n\u0000\n\u0002\u0010\u000b\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\b\u0018\u0000 \u00172\u00020\u0001:\u0001\u0017B;\b\u0017\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\n\b\u0002\u0010\u0004\u001a\u0004\u0018\u00010\u0005\u0012\b\b\u0002\u0010\u0006\u001a\u00020\u0007\u0012\n\b\u0002\u0010\b\u001a\u0004\u0018\u00010\u0003\u0012\b\b\u0002\u0010\t\u001a\u00020\u0007¢\u0006\u0002\u0010\nB=\b\u0016\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\b\u0010\u0004\u001a\u0004\u0018\u00010\u0005\u0012\u0006\u0010\u0006\u001a\u00020\u0007\u0012\b\u0010\b\u001a\u0004\u0018\u00010\u0003\u0012\b\u0010\u000b\u001a\u0004\u0018\u00010\u0003\u0012\u0006\u0010\t\u001a\u00020\u0007¢\u0006\u0002\u0010\fBQ\b\u0002\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\b\u0010\u0004\u001a\u0004\u0018\u00010\u0005\u0012\u0006\u0010\t\u001a\u00020\u0007\u0012\u0006\u0010\u0006\u001a\u00020\u0007\u0012\u0006\u0010\r\u001a\u00020\u000e\u0012\n\b\u0002\u0010\b\u001a\u0004\u0018\u00010\u0003\u0012\b\b\u0002\u0010\u000f\u001a\u00020\u0010\u0012\b\b\u0002\u0010\u0011\u001a\u00020\u0010¢\u0006\u0002\u0010\u0012R\u0013\u0010\u0004\u001a\u0004\u0018\u00010\u0005¢\u0006\b\n\u0000\u001a\u0004\b\u0013\u0010\u0014R\u0011\u0010\u0002\u001a\u00020\u0003¢\u0006\b\n\u0000\u001a\u0004\b\u0015\u0010\u0016¨\u0006\u0018"}, d2 = {"Landroidx/credentials/CreatePublicKeyCredentialRequest;", "Landroidx/credentials/CreateCredentialRequest;", "requestJson", "", "clientDataHash", "", "preferImmediatelyAvailableCredentials", "", "origin", "isAutoSelectAllowed", "(Ljava/lang/String;[BZLjava/lang/String;Z)V", "preferDefaultProvider", "(Ljava/lang/String;[BZLjava/lang/String;Ljava/lang/String;Z)V", "displayInfo", "Landroidx/credentials/CreateCredentialRequest$DisplayInfo;", "credentialData", "Landroid/os/Bundle;", "candidateQueryData", "(Ljava/lang/String;[BZZLandroidx/credentials/CreateCredentialRequest$DisplayInfo;Ljava/lang/String;Landroid/os/Bundle;Landroid/os/Bundle;)V", "getClientDataHash", "()[B", "getRequestJson", "()Ljava/lang/String;", "Companion", "credentials_release"}, k = 1, mv = {1, 8, 0}, xi = ConstraintLayout.LayoutParams.Table.LAYOUT_CONSTRAINT_VERTICAL_CHAINSTYLE)
+/* carregado de: classes.dex */
+public final class CreatePublicKeyCredentialRequest extends CreateCredentialRequest {
+    public static final String BUNDLE_KEY_CLIENT_DATA_HASH = "androidx.credentials.BUNDLE_KEY_CLIENT_DATA_HASH";
+    public static final String BUNDLE_KEY_REQUEST_JSON = "androidx.credentials.BUNDLE_KEY_REQUEST_JSON";
+    public static final String BUNDLE_VALUE_SUBTYPE_CREATE_PUBLIC_KEY_CREDENTIAL_REQUEST = "androidx.credentials.BUNDLE_VALUE_SUBTYPE_CREATE_PUBLIC_KEY_CREDENTIAL_REQUEST";
+
+    /* renomeado de: Companion, motivo: de metadados do Kotlin */
+    public static final Companion INSTANCE = new Companion(null);
+    private final byte[] clientDataHash;
+    private final String requestJson;
+
+    public /* sintético */ CreatePublicKeyCredentialRequest(String str, byte[] bArr, boolean z, boolean z2, CreateCredentialRequest.DisplayInfo displayInfo, String str2, Bundle bundle, Bundle bundle2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(str, bArr, z, z2, displayInfo, str2, bundle, bundle2);
+    }
+
+    /* sintético */ CreatePublicKeyCredentialRequest(String str, byte[] bArr, boolean z, boolean z2, CreateCredentialRequest.DisplayInfo displayInfo, String str2, Bundle bundle, Bundle bundle2, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(str, bArr, z, z2, displayInfo, (i & 32) != 0 ? null : str2, (i & 64) != 0 ? INSTANCE.toCredentialDataBundle$credentials_release(str, bArr) : bundle, (i & 128) != 0 ? INSTANCE.toCandidateDataBundle$credentials_release(str, bArr) : bundle2);
+    }
+
+    public final String getRequestJson() {
+        return this.requestJson;
+    }
+
+    public final byte[] getClientDataHash() {
+        return this.clientDataHash;
+    }
+
+    private CreatePublicKeyCredentialRequest(String requestJson, byte[] clientDataHash, boolean isAutoSelectAllowed, boolean preferImmediatelyAvailableCredentials, CreateCredentialRequest.DisplayInfo displayInfo, String origin, Bundle credentialData, Bundle candidateQueryData) {
+        super(PublicKeyCredential.TYPE_PUBLIC_KEY_CREDENTIAL, credentialData, candidateQueryData, false, isAutoSelectAllowed, displayInfo, origin, preferImmediatelyAvailableCredentials);
+        this.requestJson = requestJson;
+        this.clientDataHash = clientDataHash;
+        if (RequestValidationHelper.INSTANCE.isValidJSON(this.requestJson)) {
+        } else {
+            throw new IllegalArgumentException("requestJson must not be empty, and must be a valid JSON".toString());
+        }
+    }
+
+    public /* sintético */ CreatePublicKeyCredentialRequest(String str, byte[] bArr, boolean z, String str2, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(str, (i & 2) != 0 ? null : bArr, (i & 4) != 0 ? false : z, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? false : z2);
+    }
+
+    /* JADX WARN: chamada 'this' movida para o topo do método (pode alterar a semântica do código) */
+    public CreatePublicKeyCredentialRequest(String requestJson, byte[] clientDataHash, boolean preferImmediatelyAvailableCredentials, String origin, boolean isAutoSelectAllowed) {
+        this(requestJson, clientDataHash, isAutoSelectAllowed, preferImmediatelyAvailableCredentials, Companion.getRequestDisplayInfo$credentials_release$default(INSTANCE, requestJson, null, 2, null), origin, null, null, 192, null);
+        Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+    }
+
+    /* JADX WARN: chamada 'this' movida para o topo do método (pode alterar a semântica do código) */
+    public CreatePublicKeyCredentialRequest(String requestJson) {
+        this(requestJson, null, false, null, false, 30, null);
+        Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+    }
+
+    /* JADX WARN: chamada 'this' movida para o topo do método (pode alterar a semântica do código) */
+    public CreatePublicKeyCredentialRequest(String requestJson, byte[] clientDataHash) {
+        this(requestJson, clientDataHash, false, null, false, 28, null);
+        Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+    }
+
+    /* JADX WARN: chamada 'this' movida para o topo do método (pode alterar a semântica do código) */
+    public CreatePublicKeyCredentialRequest(String requestJson, byte[] clientDataHash, boolean preferImmediatelyAvailableCredentials) {
+        this(requestJson, clientDataHash, preferImmediatelyAvailableCredentials, null, false, 24, null);
+        Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+    }
+
+    /* JADX WARN: chamada 'this' movida para o topo do método (pode alterar a semântica do código) */
+    public CreatePublicKeyCredentialRequest(String requestJson, byte[] clientDataHash, boolean preferImmediatelyAvailableCredentials, String origin) {
+        this(requestJson, clientDataHash, preferImmediatelyAvailableCredentials, origin, false, 16, null);
+        Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+    }
+
+    /* JADX WARN: chamada 'this' movida para o topo do método (pode alterar a semântica do código) */
+    public CreatePublicKeyCredentialRequest(String requestJson, byte[] clientDataHash, boolean preferImmediatelyAvailableCredentials, String origin, String preferDefaultProvider, boolean isAutoSelectAllowed) {
+        this(requestJson, clientDataHash, isAutoSelectAllowed, preferImmediatelyAvailableCredentials, INSTANCE.getRequestDisplayInfo$credentials_release(requestJson, preferDefaultProvider), origin, null, null, 192, null);
+        Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+    }
+
+    /* compiled from: CreatePublicKeyCredentialRequest.kt */
+    @Metadata(d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0012\n\u0002\b\u0004\b\u0080\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J'\u0010\u0007\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\n2\b\u0010\u000b\u001a\u0004\u0018\u00010\u00042\u0006\u0010\f\u001a\u00020\nH\u0001¢\u0006\u0002\b\rJ!\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u0010\u001a\u00020\u00042\n\b\u0002\u0010\u0011\u001a\u0004\u0018\u00010\u0004H\u0001¢\u0006\u0002\b\u0012J\u001f\u0010\u0013\u001a\u00020\n2\u0006\u0010\u0010\u001a\u00020\u00042\b\u0010\u0014\u001a\u0004\u0018\u00010\u0015H\u0001¢\u0006\u0002\b\u0016J!\u0010\u0017\u001a\u00020\n2\u0006\u0010\u0010\u001a\u00020\u00042\n\b\u0002\u0010\u0014\u001a\u0004\u0018\u00010\u0015H\u0001¢\u0006\u0002\b\u0018R\u000e\u0010\u0003\u001a\u00020\u0004X\u0080T¢\u0006\u0002\n\u0000R\u000e\u0010\u0005\u001a\u00020\u0004X\u0080T¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0004X\u0080T¢\u0006\u0002\n\u0000¨\u0006\u0019"}, d2 = {"Landroidx/credentials/CreatePublicKeyCredentialRequest$Companion;", "", "()V", "BUNDLE_KEY_CLIENT_DATA_HASH", "", "BUNDLE_KEY_REQUEST_JSON", "BUNDLE_VALUE_SUBTYPE_CREATE_PUBLIC_KEY_CREDENTIAL_REQUEST", "createFrom", "Landroidx/credentials/CreatePublicKeyCredentialRequest;", "data", "Landroid/os/Bundle;", "origin", "candidateQueryData", "createFrom$credentials_release", "getRequestDisplayInfo", "Landroidx/credentials/CreateCredentialRequest$DisplayInfo;", "requestJson", "defaultProvider", "getRequestDisplayInfo$credentials_release", "toCandidateDataBundle", "clientDataHash", "", "toCandidateDataBundle$credentials_release", "toCredentialDataBundle", "toCredentialDataBundle$credentials_release", "credentials_release"}, k = 1, mv = {1, 8, 0}, xi = ConstraintLayout.LayoutParams.Table.LAYOUT_CONSTRAINT_VERTICAL_CHAINSTYLE)
+    public static final class Companion {
+        public /* sintético */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        private Companion() {
+        }
+
+        public static /* sintético */ CreateCredentialRequest.DisplayInfo getRequestDisplayInfo$credentials_release$default(Companion companion, String str, String str2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                str2 = null;
+            }
+            return companion.getRequestDisplayInfo$credentials_release(str, str2);
+        }
+
+        @JvmStatic
+        public final CreateCredentialRequest.DisplayInfo getRequestDisplayInfo$credentials_release(String requestJson, String defaultProvider) {
+            Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+            try {
+                JSONObject json = new JSONObject(requestJson);
+                JSONObject user = json.getJSONObject("user");
+                String userName = user.getString("name");
+                String displayName = user.isNull("displayName") ? null : user.getString("displayName");
+                Intrinsics.checkNotNullExpressionValue(userName, "userName");
+                return new CreateCredentialRequest.DisplayInfo(userName, displayName, (Icon) null, defaultProvider);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("user.name must be defined in requestJson");
+            }
+        }
+
+        public static /* sintético */ Bundle toCredentialDataBundle$credentials_release$default(Companion companion, String str, byte[] bArr, int i, Object obj) {
+            if ((i & 2) != 0) {
+                bArr = null;
+            }
+            return companion.toCredentialDataBundle$credentials_release(str, bArr);
+        }
+
+        @JvmStatic
+        public final Bundle toCredentialDataBundle$credentials_release(String requestJson, byte[] clientDataHash) {
+            Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+            Bundle bundle = new Bundle();
+            bundle.putString(PublicKeyCredential.BUNDLE_KEY_SUBTYPE, CreatePublicKeyCredentialRequest.BUNDLE_VALUE_SUBTYPE_CREATE_PUBLIC_KEY_CREDENTIAL_REQUEST);
+            bundle.putString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON", requestJson);
+            bundle.putByteArray("androidx.credentials.BUNDLE_KEY_CLIENT_DATA_HASH", clientDataHash);
+            return bundle;
+        }
+
+        @JvmStatic
+        public final Bundle toCandidateDataBundle$credentials_release(String requestJson, byte[] clientDataHash) {
+            Intrinsics.checkNotNullParameter(requestJson, "requestJson");
+            Bundle bundle = new Bundle();
+            bundle.putString(PublicKeyCredential.BUNDLE_KEY_SUBTYPE, CreatePublicKeyCredentialRequest.BUNDLE_VALUE_SUBTYPE_CREATE_PUBLIC_KEY_CREDENTIAL_REQUEST);
+            bundle.putString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON", requestJson);
+            bundle.putByteArray("androidx.credentials.BUNDLE_KEY_CLIENT_DATA_HASH", clientDataHash);
+            return bundle;
+        }
+
+        @JvmStatic
+        public final CreatePublicKeyCredentialRequest createFrom$credentials_release(Bundle data, String origin, Bundle candidateQueryData) {
+            String requestJson;
+            byte[] clientDataHash;
+            boolean preferImmediatelyAvailableCredentials;
+            CreateCredentialRequest.DisplayInfo displayInfo;
+            Intrinsics.checkNotNullParameter(data, "data");
+            Intrinsics.checkNotNullParameter(candidateQueryData, "candidateQueryData");
+            try {
+                requestJson = data.getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON");
+                Intrinsics.checkNotNull(requestJson);
+                clientDataHash = data.getByteArray("androidx.credentials.BUNDLE_KEY_CLIENT_DATA_HASH");
+                preferImmediatelyAvailableCredentials = data.getBoolean("androidx.credentials.BUNDLE_KEY_PREFER_IMMEDIATELY_AVAILABLE_CREDENTIALS", false);
+            } catch (Exception e) {
+            }
+            try {
+                displayInfo = CreateCredentialRequest.DisplayInfo.INSTANCE.createFrom(data);
+            } catch (IllegalArgumentException e2) {
+                displayInfo = getRequestDisplayInfo$credentials_release$default(this, requestJson, null, 2, null);
+            } catch (Exception e3) {
+                throw new FrameworkClassParsingException();
+            }
+            boolean isAutoSelectAllowed = data.getBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", false);
+            try {
+                return new CreatePublicKeyCredentialRequest(requestJson, clientDataHash, isAutoSelectAllowed, preferImmediatelyAvailableCredentials, displayInfo, origin, data, candidateQueryData, null);
+            } catch (Exception e4) {
+                throw new FrameworkClassParsingException();
+            }
+        }
+    }
+}

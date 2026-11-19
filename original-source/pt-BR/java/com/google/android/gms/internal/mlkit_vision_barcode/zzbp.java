@@ -1,0 +1,66 @@
+package com.google.android.gms.internal.mlkit_vision_barcode;
+
+import java.util.List;
+import java.util.ListIterator;
+
+/* compiled from: com.google.android.gms:play-services-mlkit-barcode-scanning@@18.3.1 */
+/* carregado de: classes16.dex */
+final class zzbp extends zzbn implements ListIterator {
+    final /* sintético */ zzbq zzd;
+
+    /* JADX WARN: chamada 'super' movida para o topo do método (pode alterar a semântica do código) */
+    zzbp(zzbq zzbqVar) {
+        super(zzbqVar);
+        this.zzd = zzbqVar;
+    }
+
+    @Override // java.util.ListIterator
+    public final void add(Object obj) {
+        int i;
+        boolean isEmpty = this.zzd.isEmpty();
+        zza();
+        ((ListIterator) this.zza).add(obj);
+        zzbr zzbrVar = this.zzd.zzf;
+        i = zzbrVar.zzb;
+        zzbrVar.zzb = i + 1;
+        if (isEmpty) {
+            this.zzd.zza();
+        }
+    }
+
+    @Override // java.util.ListIterator
+    public final boolean hasPrevious() {
+        zza();
+        return ((ListIterator) this.zza).hasPrevious();
+    }
+
+    @Override // java.util.ListIterator
+    public final int nextIndex() {
+        zza();
+        return ((ListIterator) this.zza).nextIndex();
+    }
+
+    @Override // java.util.ListIterator
+    public final Object previous() {
+        zza();
+        return ((ListIterator) this.zza).previous();
+    }
+
+    @Override // java.util.ListIterator
+    public final int previousIndex() {
+        zza();
+        return ((ListIterator) this.zza).previousIndex();
+    }
+
+    @Override // java.util.ListIterator
+    public final void set(Object obj) {
+        zza();
+        ((ListIterator) this.zza).set(obj);
+    }
+
+    /* JADX WARN: chamada 'super' movida para o topo do método (pode alterar a semântica do código) */
+    public zzbp(zzbq zzbqVar, int i) {
+        super(zzbqVar, ((List) zzbqVar.zzb).listIterator(i));
+        this.zzd = zzbqVar;
+    }
+}

@@ -1,0 +1,20 @@
+package androidx.camera.core;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+/* carregado de: classes.dex */
+final class SingleCloseImageProxy extends ForwardingImageProxy {
+    private final AtomicBoolean mClosed;
+
+    SingleCloseImageProxy(ImageProxy image) {
+        super(image);
+        this.mClosed = new AtomicBoolean(false);
+    }
+
+    @Override // androidx.camera.core.ForwardingImageProxy, androidx.camera.core.ImageProxy, java.lang.AutoCloseable
+    public void close() {
+        if (!this.mClosed.getAndSet(true)) {
+            super.close();
+        }
+    }
+}

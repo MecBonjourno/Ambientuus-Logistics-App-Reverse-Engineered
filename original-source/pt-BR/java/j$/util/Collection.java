@@ -1,0 +1,101 @@
+package j$.util;
+
+import j$.lang.Iterable;
+import j$.util.List;
+import j$.util.Set;
+import j$.util.SortedSet;
+import j$.util.stream.Stream;
+import j$.util.stream.StreamSupport;
+import java.util.LinkedHashSet;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+
+/* carregado de: classes15.dex */
+public interface Collection<E> extends Iterable<E> {
+
+    /* compiled from: D8$$SyntheticClass */
+    /* renomeado de: j$.util.Collection$-EL, motivo: nome de classe inválido */
+    public final /* sintético */ class EL {
+        public static /* sintético */ void forEach(java.util.Collection collection, Consumer consumer) {
+            if (collection instanceof Collection) {
+                ((Collection) collection).forEach(consumer);
+            } else {
+                CC.$default$forEach(collection, consumer);
+            }
+        }
+
+        public static /* sintético */ Stream parallelStream(java.util.Collection collection) {
+            return collection instanceof Collection ? ((Collection) collection).parallelStream() : CC.$default$parallelStream(collection);
+        }
+
+        public static /* sintético */ boolean removeIf(java.util.Collection collection, Predicate predicate) {
+            return collection instanceof Collection ? ((Collection) collection).removeIf(predicate) : CC.$default$removeIf(collection, predicate);
+        }
+
+        public static /* sintético */ Spliterator spliterator(java.util.Collection collection) {
+            return collection instanceof Collection ? ((Collection) collection).spliterator() : collection instanceof LinkedHashSet ? DesugarLinkedHashSet.spliterator((LinkedHashSet) collection) : collection instanceof java.util.SortedSet ? SortedSet.CC.$default$spliterator((java.util.SortedSet) collection) : collection instanceof java.util.Set ? Set.CC.$default$spliterator((java.util.Set) collection) : collection instanceof java.util.List ? List.CC.$default$spliterator((java.util.List) collection) : CC.$default$spliterator(collection);
+        }
+
+        public static /* sintético */ Stream stream(java.util.Collection collection) {
+            return collection instanceof Collection ? ((Collection) collection).stream() : CC.$default$stream(collection);
+        }
+
+        public static /* sintético */ Object[] toArray(java.util.Collection collection, IntFunction intFunction) {
+            return collection instanceof Collection ? ((Collection) collection).toArray(intFunction) : CC.$default$toArray(collection, intFunction);
+        }
+    }
+
+    @Override // j$.util.Collection, j$.lang.Iterable
+    void forEach(Consumer<? super E> consumer);
+
+    Stream<E> parallelStream();
+
+    boolean removeIf(Predicate<? super E> predicate);
+
+    @Override // java.lang.Iterable, j$.util.Collection, j$.lang.Iterable
+    Spliterator<E> spliterator();
+
+    Stream<E> stream();
+
+    <T> T[] toArray(IntFunction<T[]> intFunction);
+
+    /* renomeado de: j$.util.Collection$-CC, motivo: nome de classe inválido */
+    public final /* sintético */ class CC {
+        public static Object[] $default$toArray(java.util.Collection _this, IntFunction intFunction) {
+            return _this.toArray((Object[]) intFunction.apply(0));
+        }
+
+        public static boolean $default$removeIf(java.util.Collection _this, Predicate predicate) {
+            Objects.requireNonNull(predicate);
+            boolean removed = false;
+            java.util.Iterator<E> each = _this.iterator();
+            while (each.hasNext()) {
+                if (predicate.test(each.next())) {
+                    each.remove();
+                    removed = true;
+                }
+            }
+            return removed;
+        }
+
+        public static void $default$forEach(java.util.Collection _this, Consumer consumer) {
+            Objects.requireNonNull(consumer);
+            for (E t : _this) {
+                consumer.accept(t);
+            }
+        }
+
+        public static Spliterator $default$spliterator(java.util.Collection _this) {
+            return Spliterators.spliterator(_this, 0);
+        }
+
+        public static Stream $default$stream(java.util.Collection _this) {
+            return StreamSupport.stream(EL.spliterator(_this), false);
+        }
+
+        public static Stream $default$parallelStream(java.util.Collection _this) {
+            return StreamSupport.stream(EL.spliterator(_this), true);
+        }
+    }
+}

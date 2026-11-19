@@ -1,0 +1,56 @@
+package com.google.android.gms.internal.mlkit_vision_barcode_bundled;
+
+/* compiled from: com.google.mlkit:barcode-scanning@@17.3.0 */
+/* carregado de: classes16.dex */
+final class zzag implements zzel {
+    static final zzel zza = new zzag();
+
+    private zzag() {
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_vision_barcode_bundled.zzel
+    public final boolean zza(int i) {
+        switch (i) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 81:
+            case 82:
+            case 83:
+            case 84:
+            case 85:
+            case 129:
+            case 161:
+            case 163:
+            case 164:
+            case 165:
+            case 166:
+            case 167:
+            case 168:
+            case 169:
+            case 209:
+            case 211:
+            case 212:
+            case 213:
+            case 215:
+            case 216:
+            case 1297:
+            case 1298:
+            case 2705:
+            case 20753:
+            case 20769:
+                return true;
+            default:
+                return false;
+        }
+    }
+}

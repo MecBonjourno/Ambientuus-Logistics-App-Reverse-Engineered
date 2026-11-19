@@ -1,0 +1,45 @@
+package com.google.android.gms.internal.mlkit_vision_barcode_bundled;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
+
+/* compiled from: com.google.mlkit:barcode-scanning@@17.3.0 */
+/* carregado de: classes16.dex */
+public final class zzbd implements Parcelable.Creator {
+    @Override // android.os.Parcelable.Creator
+    public final /* bridge */ /* sintético */ Object createFromParcel(Parcel parcel) {
+        int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
+        boolean z = false;
+        zzbt zzbtVar = null;
+        zzbv zzbvVar = null;
+        boolean z2 = false;
+        while (parcel.dataPosition() < validateObjectHeader) {
+            int readHeader = SafeParcelReader.readHeader(parcel);
+            switch (SafeParcelReader.getFieldId(readHeader)) {
+                case 1:
+                    zzbtVar = (zzbt) SafeParcelReader.createParcelable(parcel, readHeader, zzbt.CREATOR);
+                    break;
+                case 2:
+                    zzbvVar = (zzbv) SafeParcelReader.createParcelable(parcel, readHeader, zzbv.CREATOR);
+                    break;
+                case 3:
+                    z = SafeParcelReader.readBoolean(parcel, readHeader);
+                    break;
+                case 4:
+                    z2 = SafeParcelReader.readBoolean(parcel, readHeader);
+                    break;
+                default:
+                    SafeParcelReader.skipUnknownField(parcel, readHeader);
+                    break;
+            }
+        }
+        SafeParcelReader.ensureAtEnd(parcel, validateObjectHeader);
+        return new zzbc(zzbtVar, zzbvVar, z, z2);
+    }
+
+    @Override // android.os.Parcelable.Creator
+    public final /* sintético */ Object[] newArray(int i) {
+        return new zzbc[i];
+    }
+}

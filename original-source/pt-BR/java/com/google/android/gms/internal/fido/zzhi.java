@@ -1,0 +1,59 @@
+package com.google.android.gms.internal.fido;
+
+import com.google.common.primitives.SignedBytes;
+import java.util.Arrays;
+
+/* compiled from: com.google.android.gms:play-services-fido@@21.0.0 */
+/* carregado de: classes16.dex */
+public final class zzhi extends zzhp {
+    private final zzgx zza;
+
+    zzhi(zzgx zzgxVar) {
+        this.zza = zzgxVar;
+    }
+
+    @Override // java.lang.Comparable
+    public final /* bridge */ /* sintético */ int compareTo(Object obj) {
+        zzhp zzhpVar = (zzhp) obj;
+        if (zzd(SignedBytes.MAX_POWER_OF_TWO) != zzhpVar.zza()) {
+            return zzd(SignedBytes.MAX_POWER_OF_TWO) - zzhpVar.zza();
+        }
+        zzhi zzhiVar = (zzhi) zzhpVar;
+        zzgx zzgxVar = this.zza;
+        int zzd = zzgxVar.zzd();
+        zzgx zzgxVar2 = zzhiVar.zza;
+        if (zzd != zzgxVar2.zzd()) {
+            return zzgxVar.zzd() - zzgxVar2.zzd();
+        }
+        return zzgm.zza().compare(zzgxVar.zzm(), zzhiVar.zza.zzm());
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && getClass() == obj.getClass()) {
+            return this.zza.equals(((zzhi) obj).zza);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(zzd(SignedBytes.MAX_POWER_OF_TWO)), this.zza});
+    }
+
+    public final String toString() {
+        zzgf zzd = zzgf.zzf().zzd();
+        byte[] zzm = this.zza.zzm();
+        return "h'" + zzd.zzg(zzm, 0, zzm.length) + "'";
+    }
+
+    @Override // com.google.android.gms.internal.fido.zzhp
+    protected final int zza() {
+        return zzd(SignedBytes.MAX_POWER_OF_TWO);
+    }
+
+    public final zzgx zzc() {
+        return this.zza;
+    }
+}

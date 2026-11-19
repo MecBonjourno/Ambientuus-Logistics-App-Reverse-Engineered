@@ -1,0 +1,13 @@
+package javax.inject;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Qualifier
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+/* carregado de: classes16.dex */
+public @interface Named {
+    String value() default "";
+}

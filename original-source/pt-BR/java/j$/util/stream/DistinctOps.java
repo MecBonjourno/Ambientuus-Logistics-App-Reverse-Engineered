@@ -1,0 +1,199 @@
+package j$.util.stream;
+
+import j$.util.Objects;
+import j$.util.Spliterator;
+import j$.util.concurrent.ConcurrentHashMap;
+import j$.util.function.BiConsumer$CC;
+import j$.util.function.Consumer$CC;
+import j$.util.stream.DistinctOps;
+import j$.util.stream.ReferencePipeline;
+import j$.util.stream.Sink;
+import j$.util.stream.StreamSpliterators;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Supplier;
+
+/* carregado de: classes15.dex */
+final class DistinctOps {
+    private DistinctOps() {
+    }
+
+    /* JADX INFO: adicionar declarações de tipo genérico ausentes: [T] */
+    /* renomeado de: j$.util.stream.DistinctOps$1, motivo: nome de classe inválido */
+    class AnonymousClass1<T> extends ReferencePipeline.StatefulOp<T, T> {
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.AbstractPipeline != java.util.stream.AbstractPipeline<?, T, ?> */
+        AnonymousClass1(AbstractPipeline abstractPipeline, StreamShape inputShape, int opFlags) {
+            super(abstractPipeline, inputShape, opFlags);
+        }
+
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.Spliterator != java.util.Spliterator<P_IN> */
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.PipelineHelper != java.util.stream.PipelineHelper<T> */
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.TerminalOp != java.util.stream.TerminalOp<T, java.util.LinkedHashSet<T>> */
+        <P_IN> Node<T> reduce(PipelineHelper<T> pipelineHelper, Spliterator<P_IN> spliterator) {
+            return Nodes.node((Collection) ReduceOps.makeRef(new Supplier() { // da classe: j$.util.stream.DistinctOps$1$$ExternalSyntheticLambda1
+                @Override // java.util.function.Supplier
+                public final Object get() {
+                    return new LinkedHashSet();
+                }
+            }, new BiConsumer() { // da classe: j$.util.stream.DistinctOps$1$$ExternalSyntheticLambda2
+                @Override // java.util.function.BiConsumer
+                public final void accept(Object obj, Object obj2) {
+                    ((LinkedHashSet) obj).add(obj2);
+                }
+
+                @Override // java.util.function.BiConsumer
+                public /* sintético */ BiConsumer andThen(BiConsumer biConsumer) {
+                    return BiConsumer$CC.$default$andThen(this, biConsumer);
+                }
+            }, new BiConsumer() { // da classe: j$.util.stream.DistinctOps$1$$ExternalSyntheticLambda3
+                @Override // java.util.function.BiConsumer
+                public final void accept(Object obj, Object obj2) {
+                    ((LinkedHashSet) obj).addAll((LinkedHashSet) obj2);
+                }
+
+                @Override // java.util.function.BiConsumer
+                public /* sintético */ BiConsumer andThen(BiConsumer biConsumer) {
+                    return BiConsumer$CC.$default$andThen(this, biConsumer);
+                }
+            }).evaluateParallel(pipelineHelper, spliterator));
+        }
+
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.Spliterator != java.util.Spliterator<P_IN> */
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.concurrent.ConcurrentHashMap != java.util.concurrent.ConcurrentHashMap<T, java.lang.Boolean> */
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.PipelineHelper != java.util.stream.PipelineHelper<T> */
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.TerminalOp != java.util.stream.TerminalOp<T, java.lang.Void> */
+        @Override // j$.util.stream.ReferencePipeline.StatefulOp, j$.util.stream.AbstractPipeline
+        <P_IN> Node<T> opEvaluateParallel(PipelineHelper<T> pipelineHelper, Spliterator<P_IN> spliterator, IntFunction<T[]> intFunction) {
+            if (StreamOpFlag.DISTINCT.isKnown(pipelineHelper.getStreamAndOpFlags())) {
+                return pipelineHelper.evaluate(spliterator, false, intFunction);
+            }
+            if (StreamOpFlag.ORDERED.isKnown(pipelineHelper.getStreamAndOpFlags())) {
+                return reduce(pipelineHelper, spliterator);
+            }
+            final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+            final ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+            ForEachOps.makeRef(new Consumer() { // da classe: j$.util.stream.DistinctOps$1$$ExternalSyntheticLambda0
+                @Override // java.util.function.Consumer
+                public final void accept(Object obj) {
+                    DistinctOps.AnonymousClass1.lambda$opEvaluateParallel$0(atomicBoolean, concurrentHashMap, obj);
+                }
+
+                @Override // java.util.function.Consumer
+                public /* sintético */ Consumer andThen(Consumer consumer) {
+                    return Consumer$CC.$default$andThen(this, consumer);
+                }
+            }, false).evaluateParallel(pipelineHelper, spliterator);
+            Collection keySet = concurrentHashMap.keySet();
+            Collection collection = keySet;
+            if (atomicBoolean.get()) {
+                HashSet hashSet = new HashSet(keySet);
+                hashSet.add(null);
+                collection = hashSet;
+            }
+            return Nodes.node(collection);
+        }
+
+        static /* sintético */ void lambda$opEvaluateParallel$0(AtomicBoolean seenNull, ConcurrentHashMap map, Object t) {
+            if (t == null) {
+                seenNull.set(true);
+            } else {
+                map.putIfAbsent(t, Boolean.TRUE);
+            }
+        }
+
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.Spliterator != java.util.Spliterator<P_IN> */
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.PipelineHelper != java.util.stream.PipelineHelper<T> */
+        @Override // j$.util.stream.AbstractPipeline
+        <P_IN> Spliterator<T> opEvaluateParallelLazy(PipelineHelper<T> pipelineHelper, Spliterator<P_IN> spliterator) {
+            if (StreamOpFlag.DISTINCT.isKnown(pipelineHelper.getStreamAndOpFlags())) {
+                return pipelineHelper.wrapSpliterator(spliterator);
+            }
+            if (StreamOpFlag.ORDERED.isKnown(pipelineHelper.getStreamAndOpFlags())) {
+                return reduce(pipelineHelper, spliterator).spliterator();
+            }
+            return new StreamSpliterators.DistinctSpliterator(pipelineHelper.wrapSpliterator(spliterator));
+        }
+
+        /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.Sink != java.util.stream.Sink<T> */
+        @Override // j$.util.stream.AbstractPipeline
+        Sink<T> opWrapSink(int flags, Sink<T> sink) {
+            Objects.requireNonNull(sink);
+            if (StreamOpFlag.DISTINCT.isKnown(flags)) {
+                return sink;
+            }
+            if (StreamOpFlag.SORTED.isKnown(flags)) {
+                return new Sink.ChainedReference<T, T>(sink) { // da classe: j$.util.stream.DistinctOps.1.1
+                    T lastSeen;
+                    boolean seenNull;
+
+                    @Override // j$.util.stream.Sink.ChainedReference, j$.util.stream.Sink
+                    public void begin(long size) {
+                        this.seenNull = false;
+                        this.lastSeen = null;
+                        this.downstream.begin(-1L);
+                    }
+
+                    @Override // j$.util.stream.Sink.ChainedReference, j$.util.stream.Sink
+                    public void end() {
+                        this.seenNull = false;
+                        this.lastSeen = null;
+                        this.downstream.end();
+                    }
+
+                    @Override // java.util.function.Consumer
+                    public void accept(T t) {
+                        if (t == null) {
+                            if (!this.seenNull) {
+                                this.seenNull = true;
+                                Consumer consumer = this.downstream;
+                                this.lastSeen = null;
+                                consumer.accept(null);
+                                return;
+                            }
+                            return;
+                        }
+                        if (this.lastSeen == null || !t.equals(this.lastSeen)) {
+                            Consumer consumer2 = this.downstream;
+                            this.lastSeen = t;
+                            consumer2.accept(t);
+                        }
+                    }
+                };
+            }
+            return new Sink.ChainedReference<T, T>(sink) { // da classe: j$.util.stream.DistinctOps.1.2
+                Set<T> seen;
+
+                @Override // j$.util.stream.Sink.ChainedReference, j$.util.stream.Sink
+                public void begin(long size) {
+                    this.seen = new HashSet();
+                    this.downstream.begin(-1L);
+                }
+
+                @Override // j$.util.stream.Sink.ChainedReference, j$.util.stream.Sink
+                public void end() {
+                    this.seen = null;
+                    this.downstream.end();
+                }
+
+                @Override // java.util.function.Consumer
+                public void accept(T t) {
+                    if (!this.seen.contains(t)) {
+                        this.seen.add(t);
+                        this.downstream.accept(t);
+                    }
+                }
+            };
+        }
+    }
+
+    /* JADX WARN: tipos genéricos nas informações de depuração não são iguais: j$.util.stream.AbstractPipeline != java.util.stream.AbstractPipeline<?, T, ?> */
+    static <T> ReferencePipeline<T, T> makeRef(AbstractPipeline<?, T, ?> abstractPipeline) {
+        return new AnonymousClass1(abstractPipeline, StreamShape.REFERENCE, StreamOpFlag.IS_DISTINCT | StreamOpFlag.NOT_SIZED);
+    }
+}

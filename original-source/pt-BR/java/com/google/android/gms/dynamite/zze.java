@@ -1,0 +1,13 @@
+package com.google.android.gms.dynamite;
+
+/* compiled from: com.google.android.gms:play-services-basement@@18.8.0 */
+/* carregado de: classes16.dex */
+final class zze extends ThreadLocal {
+    zze() {
+    }
+
+    @Override // java.lang.ThreadLocal
+    protected final /* sintético */ Object initialValue() {
+        return 0L;
+    }
+}

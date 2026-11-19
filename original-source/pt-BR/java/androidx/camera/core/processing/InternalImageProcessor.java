@@ -1,0 +1,61 @@
+package androidx.camera.core.processing;
+
+import androidx.camera.core.CameraEffect;
+import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.ImageProcessor;
+import androidx.camera.core.ProcessingException;
+import androidx.concurrent.futures.CallbackToFutureAdapter;
+import androidx.core.util.Consumer;
+import androidx.core.util.Preconditions;
+import j$.util.Objects;
+import java.util.concurrent.Executor;
+
+/* carregado de: classes.dex */
+public class InternalImageProcessor {
+    private final Consumer<Throwable> mErrorListener;
+    private final Executor mExecutor;
+    private final ImageProcessor mImageProcessor;
+
+    public InternalImageProcessor(CameraEffect cameraEffect) {
+        Preconditions.checkArgument(cameraEffect.getTargets() == 4);
+        this.mExecutor = cameraEffect.getExecutor();
+        this.mImageProcessor = (ImageProcessor) Objects.requireNonNull(cameraEffect.getImageProcessor());
+        this.mErrorListener = cameraEffect.getErrorListener();
+    }
+
+    public ImageProcessor.Response safeProcess(final ImageProcessor.Request request) throws ImageCaptureException {
+        try {
+            return (ImageProcessor.Response) CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // da classe: androidx.camera.core.processing.InternalImageProcessor$$ExternalSyntheticLambda1
+                @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
+                public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
+                    return InternalImageProcessor.this.m213xe9947096(request, completer);
+                }
+            }).get();
+        } catch (Exception e) {
+            Throwable cause = e.getCause() != null ? e.getCause() : e;
+            throw new ImageCaptureException(0, "Failed to invoke ImageProcessor.", cause);
+        }
+    }
+
+    /* renomeado de: lambda$safeProcess$1$androidx-camera-core-processing-InternalImageProcessor, motivo: nome Java inválido */
+    /* sintético */ Object m213xe9947096(final ImageProcessor.Request request, final CallbackToFutureAdapter.Completer completer) throws Exception {
+        this.mExecutor.execute(new Runnable() { // da classe: androidx.camera.core.processing.InternalImageProcessor$$ExternalSyntheticLambda0
+            @Override // java.lang.Runnable
+            public final void run() {
+                InternalImageProcessor.this.m212xe85e1db7(request, completer);
+            }
+        });
+        return "InternalImageProcessor#process " + request.hashCode();
+    }
+
+    /* renomeado de: lambda$safeProcess$0$androidx-camera-core-processing-InternalImageProcessor, motivo: nome Java inválido */
+    /* sintético */ void m212xe85e1db7(ImageProcessor.Request request, CallbackToFutureAdapter.Completer completer) {
+        try {
+            ImageProcessor.Response response = this.mImageProcessor.process(request);
+            completer.set(response);
+        } catch (ProcessingException e) {
+            this.mErrorListener.accept(e);
+            completer.setException(e);
+        }
+    }
+}
