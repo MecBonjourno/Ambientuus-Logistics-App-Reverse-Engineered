@@ -4,6 +4,10 @@
 **Date:** 2026-11-17
 **Purpose:** Explain what the shipped app does, map its internals, and define a realistic path to a supported replacement now that the original source is unavailable.
 
+> **Superseded for planning (2026-11-18):** the Android-only reconstruction plan is on hold. The
+> multi-platform web + iOS/Android + Windows plan is in [docs/platform/README.md](../platform/README.md).
+> This document remains a record of the Android-only analysis and effort estimate.
+
 ---
 
 ## 1. What the app does
